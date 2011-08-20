@@ -1,7 +1,9 @@
 require 'test_helper'
+require 'minitest/autorun'
 
 class VenuesControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "#index" do
+    get :index
+    assert_equal response.status, 200
+  end
 end
