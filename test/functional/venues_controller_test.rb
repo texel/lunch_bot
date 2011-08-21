@@ -18,4 +18,27 @@ class VenuesControllerTest < ActionController::TestCase
     get :new
     assert_template 'new'
   end
+
+  test "#create with valid data" do
+    @user = users(:leigh)
+    sign_in :user, @user
+
+    original_venue_count = Venue.count
+
+    post :create, :venue => {:name => 'Doner Kebab', :description => 'Tasty Sandwiches'}
+
+    assert_equal Venue.count - original_venue_count, 1
+    assert_redirected_to venues_path
+  end
+
+  test "#create with invalid data" do
+    @user = users(:leigh)
+    sign_in :user, @user
+
+    original_venue_count = Venue.count
+
+    post :create, :venue => {:name => ''}
+    assert_equal original_venue_count, Venue.count
+    assert_template 'new'
+  end
 end
