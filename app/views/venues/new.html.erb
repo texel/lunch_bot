@@ -1,6 +1,6 @@
 <h2>New Venue</h2>
 
-<%= form_for :venue do |f| %>
+<%= form_for :venue, :url => venues_path do |f| %>
   <fieldset>
     <div class="clearfix">
       <%= f.label :name %>
