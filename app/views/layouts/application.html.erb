@@ -2,20 +2,37 @@
 <html>
   <head>
     <title>LunchBot</title>
-    <%= stylesheet_link_tag    "application", "bootstrap-1.0.0" %>
+    <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="container">
-      <div class="row" id="user_bar">
-        <% if user_signed_in? %>
-          Hello, <%= current_user.email %> (<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>)
-        <% else %>
-          <%= link_to "Sign in", new_user_session_path %>/<%= link_to "Sign up", new_user_registration_path %>
-        <% end %>
+    <div class="topbar">
+      <div class="container fixed">
+        <h3>
+          <a href="#" class="logo">
+            <span class="logo">LunchBot</span>
+          </a>
+        </h3>
+
+        <ul>
+          <li class="active"><%= link_to "Venues", venues_path %></li>
+        </ul>
+        <div id="user_bar">
+          <% if user_signed_in? %>
+            Hello, <%= current_user.email %> (<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>)
+          <% else %>
+            <%= link_to "Sign in", new_user_session_path %>/<%= link_to "Sign up", new_user_registration_path %>
+          <% end %>
+        </div>
+
       </div>
-      <div class="row">
+    </div>
+    <div class="container">
+     <div class="row" id="nav">
+        <%= yield :nav %>
+      </div>
+      <div class="row" id="primary_content">
         <%= yield %>
       </div>
     </div>

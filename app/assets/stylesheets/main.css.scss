@@ -1,5 +1,14 @@
 #user_bar {
+  float: right;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  line-height: 19px;
+}
+
+#nav {
+  margin-top: 50px;
+
+  a {
+    margin-top: 10px;
+  }
 }

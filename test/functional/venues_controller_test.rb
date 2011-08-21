@@ -11,4 +11,11 @@ class VenuesControllerTest < ActionController::TestCase
     get :new
     assert_redirected_to new_user_session_path
   end
+
+  test "#new with a user logged in" do
+    @user = users(:leigh)
+    sign_in :user, @user
+    get :new
+    assert_template 'new'
+  end
 end
